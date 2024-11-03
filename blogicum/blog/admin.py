@@ -1,12 +1,12 @@
 from django.contrib import admin
 
-from .models import Category, Location, Post
+from .models import Category, Location, Post, Comment
 
 
 @admin.register(Category)
 class CategoryAdmin(admin.ModelAdmin):
     list_display = ('title', 'slug', 'is_published', 'created_at')
-    search_fields = ['title']
+    search_fields = ('title',)
     list_filter = ('is_published', 'created_at')
 
 
@@ -24,6 +24,13 @@ class PostAdmin(admin.ModelAdmin):
     search_fields = ('title', 'text', 'author__username', 'category__title')
     list_filter = ('is_published', 'pub_date', 'category', 'location')
     date_hierarchy = 'pub_date'
+
+
+@admin.register(Comment)
+class CommentAdmin(admin.ModelAdmin):
+    list_display = ('author', 'post', 'created_at')
+    search_fields = ('author', 'post__title')
+    list_filter = ('created_at',)
 
 
 admin.site.empty_value_display = 'Не задано'

@@ -56,6 +56,7 @@ HANDLER500 = 'pages.views.server_error'
 MEDIA_ROOT = BASE_DIR / 'media'
 MEDIA_URL = '/media/'
 
+POSTS_PER_PAGE = 10
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
